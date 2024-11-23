@@ -9,5 +9,9 @@ public class Query
         _context = context;
     }
 
-    public IQueryable<Product> GetProducts() => _context.Products;
+    public IQueryable<Product> GetProducts(CatalogContext context)
+        => context.Products;
+
+    public Task<Product?> GetProductById(int id, CatalogContext context)
+        => context.Products.FirstOrDefaultAsync(x => x.Id == id);
 }
