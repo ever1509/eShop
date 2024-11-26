@@ -8,7 +8,9 @@ builder.Services
     .AddMigration<CatalogContext, CatalogContextSeed>();
 
 builder.Services
-    .AddGraphQLServer();
+    .AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddProjections();
 
 var app = builder.Build();
 

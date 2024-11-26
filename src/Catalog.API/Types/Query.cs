@@ -8,10 +8,11 @@ public class Query
     {
         _context = context;
     }
-
+    [UseProjection]
     public IQueryable<Product> GetProducts(CatalogContext context)
         => context.Products;
-
-    public Task<Product?> GetProductById(int id, CatalogContext context)
-        => context.Products.FirstOrDefaultAsync(x => x.Id == id);
+    [UseFirstOrDefault]
+    [UseProjection]
+    public IQueryable<Product> GetProductById(int id, CatalogContext context)
+        => context.Products.Where(x => x.Id == id);
 }
