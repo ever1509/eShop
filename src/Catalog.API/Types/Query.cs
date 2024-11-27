@@ -8,6 +8,15 @@ public class Query
     {
         _context = context;
     }
+
+    [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)]
+    [UseProjection]
+    public IQueryable<Brand> GetBrands(CatalogContext context) => context.Brands;
+
+    [UseFirstOrDefault]
+    [UseProjection]
+    public IQueryable<Brand> GetBrandById(int id, CatalogContext context) => context.Brands.Where(x => x.Id == id);
+    
     [UseProjection]
     public IQueryable<Product> GetProducts(CatalogContext context)
         => context.Products;
