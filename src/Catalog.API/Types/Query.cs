@@ -11,6 +11,7 @@ public class Query
 
     [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)]
     [UseProjection]
+    [UseFiltering]
     public IQueryable<Brand> GetBrands(CatalogContext context) => context.Brands;
 
     [UseFirstOrDefault]
@@ -18,6 +19,7 @@ public class Query
     public IQueryable<Brand> GetBrandById(int id, CatalogContext context) => context.Brands.Where(x => x.Id == id);
     
     [UseProjection]
+    [UseFiltering]
     public IQueryable<Product> GetProducts(CatalogContext context)
         => context.Products;
     [UseFirstOrDefault]
